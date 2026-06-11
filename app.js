@@ -47,6 +47,21 @@ document.getElementById(
     "teamBuildBtn"
 );
 
+const backToResultBtn =
+document.getElementById(
+    "backToResultBtn"
+);
+
+const moveToTeam1Btn =
+document.getElementById(
+    "moveToTeam1Btn"
+);
+
+const moveToTeam2Btn =
+document.getElementById(
+    "moveToTeam2Btn"
+);
+
 const countdown =
 document.getElementById(
     "countdown"
@@ -67,19 +82,19 @@ document.getElementById(
     "finalResultContainer"
 );
 
-const team1Area =
-document.getElementById(
-    "team1Area"
-);
-
-const team2Area =
-document.getElementById(
-    "team2Area"
-);
-
 const availablePlayers =
 document.getElementById(
     "availablePlayers"
+);
+
+const team1Players =
+document.getElementById(
+    "team1Players"
+);
+
+const team2Players =
+document.getElementById(
+    "team2Players"
 );
 
 /* ================================= */
@@ -146,7 +161,7 @@ function shuffle(array){
 }
 
 /* ================================= */
-/* PLAYER INPUT CREATE */
+/* PLAYER INPUTS */
 /* ================================= */
 
 function createPlayerInputs(){
@@ -253,7 +268,7 @@ async function loadChampions(){
 loadChampions();
 
 /* ================================= */
-/* PLAYER COLLECT */
+/* COLLECT PLAYERS */
 /* ================================= */
 
 function collectPlayers(){
@@ -348,7 +363,7 @@ function assignChampions(){
                 ){
 
                     alert(
-                        "챔피언이 부족합니다."
+                        "챔피언 수가 부족합니다."
                     );
 
                     return;
@@ -453,7 +468,7 @@ function buildRevealBoard(){
 
             `;
 
-            const list =
+            const championList =
             row.querySelector(
                 ".reveal-champion-list"
             );
@@ -461,7 +476,7 @@ function buildRevealBoard(){
             result.champions.forEach(
                 () => {
 
-                    list.appendChild(
+                    championList.appendChild(
                         createHiddenCard()
                     );
 
@@ -485,24 +500,30 @@ async function runCountdown(){
     countdown.textContent =
     "3";
 
-    await sleep(333);
+    await sleep(
+        333
+    );
 
     countdown.textContent =
     "2";
 
-    await sleep(333);
+    await sleep(
+        333
+    );
 
     countdown.textContent =
     "1";
 
-    await sleep(334);
+    await sleep(
+        334
+    );
 
     countdown.textContent =
     "";
 }
 
 /* ================================= */
-/* REVEAL PLAYER */
+/* REVEAL ONE PLAYER */
 /* ================================= */
 
 async function revealPlayer(
@@ -529,8 +550,10 @@ async function revealPlayer(
         result.player
     );
 
-    if(!activeRow)
-        return;
+    if(
+        !activeRow
+    )
+    return;
 
     activeRow.classList.add(
         "active"
@@ -564,34 +587,30 @@ async function revealPlayer(
                 ".card-front p"
             ).textContent =
             champion.name;
+        }
+    );
+
+    await sleep(
+        300
+    );
+
+    /* 선택한 개수만큼 거의 동시에 공개 */
+
+    cards.forEach(
+        card => {
+
+            card
+            .querySelector(
+                ".flip-card"
+            )
+            .classList.add(
+                "flipped"
+            );
 
         }
     );
 
-    await sleep(300);
-
-    /* 플레이어의 챔피언 전부 공개 */
-
-    for(
-        let i = 0;
-        i < cards.length;
-        i++
-    ){
-
-        cards[i]
-        .querySelector(
-            ".flip-card"
-        )
-        .classList.add(
-            "flipped"
-        );
-
-        await sleep(
-            100
-        );
-    }
-
-    /* 다음 플레이어까지 1초 */
+    /* 다음 플레이어 공개까지 1초 */
 
     await sleep(
         1000
@@ -648,15 +667,15 @@ function renderFinalResults(){
     results.forEach(
         result => {
 
-            const card =
+            const playerCard =
             document.createElement(
                 "div"
             );
 
-            card.className =
+            playerCard.className =
             "result-player";
 
-            card.innerHTML = `
+            playerCard.innerHTML = `
 
                 <h3>
                     ${result.player}
@@ -690,7 +709,7 @@ function renderFinalResults(){
             `;
 
             finalResultContainer.appendChild(
-                card
+                playerCard
             );
 
         }
@@ -781,6 +800,12 @@ function buildDraftBoard(){
     availablePlayers.innerHTML =
     "";
 
+    team1Players.innerHTML =
+    "";
+
+    team2Players.innerHTML =
+    "";
+
     results.forEach(
         result => {
 
@@ -815,16 +840,22 @@ function openTeamBuilder(){
 /* MOVE PLAYER */
 /* ================================= */
 
-function movePlayerToTeam(
-    teamArea
+function moveSelectedPlayer(
+    targetArea
 ){
 
     if(
         !selectedPlayerCard
-    )
-    return;
+    ){
 
-    teamArea.appendChild(
+        alert(
+            "플레이어를 먼저 선택하세요."
+        );
+
+        return;
+    }
+
+    targetArea.appendChild(
         selectedPlayerCard
     );
 
@@ -838,23 +869,29 @@ function movePlayerToTeam(
 }
 
 /* ================================= */
-/* TEAM CLICK */
+/* TEAM BUTTONS */
 /* ================================= */
 
-team1Area.addEventListener(
+moveToTeam1Btn.addEventListener(
     "click",
-    () =>
-    movePlayerToTeam(
-        team1Area
-    )
+    () => {
+
+        moveSelectedPlayer(
+            team1Players
+        );
+
+    }
 );
 
-team2Area.addEventListener(
+moveToTeam2Btn.addEventListener(
     "click",
-    () =>
-    movePlayerToTeam(
-        team2Area
-    )
+    () => {
+
+        moveSelectedPlayer(
+            team2Players
+        );
+
+    }
 );
 
 /* ================================= */
@@ -864,6 +901,25 @@ team2Area.addEventListener(
 teamBuildBtn.addEventListener(
     "click",
     openTeamBuilder
+);
+
+/* ================================= */
+/* BACK TO RESULT */
+/* ================================= */
+
+backToResultBtn.addEventListener(
+    "click",
+    () => {
+
+        teamBuildPage.classList.add(
+            "hidden"
+        );
+
+        finalPage.classList.remove(
+            "hidden"
+        );
+
+    }
 );
 
 /* ================================= */
