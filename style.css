@@ -16,10 +16,6 @@
     --border:#463714;
 }
 
-/* =============================== */
-/* BODY */
-/* =============================== */
-
 body{
 
     min-height:100vh;
@@ -82,7 +78,7 @@ body{
 }
 
 /* =============================== */
-/* OPTION */
+/* OPTIONS */
 /* =============================== */
 
 .option-area{
@@ -98,9 +94,9 @@ body{
 
     display:flex;
 
-    gap:8px;
-
     align-items:center;
+
+    gap:8px;
 
     color:var(--gold-light);
 }
@@ -140,13 +136,6 @@ body{
     color:white;
 }
 
-.player-name:focus{
-
-    outline:none;
-
-    border-color:var(--gold);
-}
-
 .champion-count{
 
     width:120px;
@@ -182,7 +171,10 @@ button:hover{
 
 #startBtn,
 #restartBtn,
-#teamBuildBtn{
+#teamBuildBtn,
+#backToResultBtn,
+#moveToTeam1Btn,
+#moveToTeam2Btn{
 
     background:var(--gold);
 
@@ -273,15 +265,7 @@ button:hover{
 
     border:2px solid #243040;
 
-    background:
-    rgba(
-        30,
-        35,
-        40,
-        .9
-    );
-
-    transition:.3s;
+    background:rgba(30,35,40,.9);
 }
 
 .reveal-player-row.active{
@@ -302,8 +286,6 @@ button:hover{
 
     width:150px;
 
-    font-size:18px;
-
     font-weight:bold;
 }
 
@@ -317,7 +299,7 @@ button:hover{
 }
 
 /* =============================== */
-/* CHAMPION CARD */
+/* FLIP CARD */
 /* =============================== */
 
 .champion-card{
@@ -339,8 +321,7 @@ button:hover{
 
     transform-style:preserve-3d;
 
-    transition:
-    transform .7s;
+    transition:.7s;
 }
 
 .flip-card.flipped{
@@ -378,9 +359,7 @@ button:hover{
 
     color:var(--gold);
 
-    font-size:40px;
-
-    font-weight:bold;
+    font-size:42px;
 }
 
 .card-front{
@@ -477,13 +456,6 @@ button:hover{
     border:2px solid var(--gold);
 }
 
-.result-champion p{
-
-    margin-top:5px;
-
-    font-size:12px;
-}
-
 /* =============================== */
 /* TEAM BUILD */
 /* =============================== */
@@ -492,7 +464,16 @@ button:hover{
 
     text-align:center;
 
-    color:var(--gold-light);
+    margin-bottom:20px;
+}
+
+.team-action-bar{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
 
     margin-bottom:25px;
 }
@@ -521,23 +502,6 @@ button:hover{
     padding:20px;
 }
 
-.team-area{
-
-    cursor:pointer;
-}
-
-.team-area:hover{
-
-    box-shadow:
-    0 0 20px
-    rgba(
-        200,
-        170,
-        110,
-        .3
-    );
-}
-
 .team-area h2,
 .available-area h2{
 
@@ -549,7 +513,7 @@ button:hover{
 }
 
 /* =============================== */
-/* DRAFT PLAYER */
+/* PLAYER CARD */
 /* =============================== */
 
 .draft-player-card{
@@ -599,13 +563,9 @@ button:hover{
 
 .draft-player-name{
 
-    font-size:18px;
-
-    font-weight:bold;
-
     color:var(--gold);
 
-    white-space:nowrap;
+    font-weight:bold;
 }
 
 .draft-player-champions{
@@ -615,8 +575,6 @@ button:hover{
     gap:4px;
 
     flex-wrap:wrap;
-
-    justify-content:flex-end;
 }
 
 .mini-champion{
@@ -630,13 +588,6 @@ button:hover{
     border:2px solid var(--gold);
 
     object-fit:cover;
-
-    transition:.2s;
-}
-
-.mini-champion:hover{
-
-    transform:scale(1.15);
 }
 
 /* =============================== */
@@ -653,18 +604,6 @@ button:hover{
     .champion-count{
 
         width:100%;
-    }
-
-    .reveal-player-row{
-
-        flex-direction:column;
-
-        align-items:flex-start;
-    }
-
-    .reveal-player-name{
-
-        width:auto;
     }
 
     .team-build-layout{
