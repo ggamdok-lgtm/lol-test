@@ -9,194 +9,221 @@
 </head>
 <body>
 
-    <!-- ========================= -->
-    <!-- 시작 화면 -->
-    <!-- ========================= -->
+<!-- ========================= -->
+<!-- SETUP PAGE -->
+<!-- ========================= -->
 
-    <section id="setupPage">
+<section id="setupPage">
 
-        <div class="container">
+    <div class="container">
 
-            <h1 class="title">
-                LEAGUE OF LEGENDS
-            </h1>
+        <h1 class="title">
+            LEAGUE OF LEGENDS
+        </h1>
 
-            <h2 class="subtitle">
-                RANDOM CHAMPION PICKER
-            </h2>
+        <h2 class="subtitle">
+            RANDOM CHAMPION PICKER
+        </h2>
 
-            <div class="option-area">
+        <div class="option-area">
 
-                <label class="checkbox-wrap">
+            <label class="checkbox-wrap">
 
-                    <input
-                        type="checkbox"
-                        id="allowDuplicate"
-                        checked
-                    >
+                <input
+                    type="checkbox"
+                    id="allowDuplicate"
+                    checked
+                >
 
-                    챔피언 중복 허용
+                챔피언 중복 허용
 
-                </label>
+            </label>
 
-            </div>
+        </div>
 
-            <!-- 플레이어 입력 영역 -->
-            <div id="playerInputs"></div>
+        <div id="playerInputs"></div>
 
-            <button id="startBtn">
-                추첨 시작
+        <button id="startBtn">
+            추첨 시작
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ========================= -->
+<!-- REVEAL PAGE -->
+<!-- ========================= -->
+
+<section
+    id="revealPage"
+    class="hidden"
+>
+
+    <div class="container">
+
+        <h1 class="title">
+            CHAMPION REVEAL
+        </h1>
+
+        <div class="current-reveal-info">
+
+            현재 공개 중 :
+
+            <span id="currentPlayerName">
+                -
+            </span>
+
+        </div>
+
+        <div
+            id="countdown"
+            class="countdown"
+        ></div>
+
+        <div
+            id="allPlayersReveal"
+            class="all-players-reveal"
+        ></div>
+
+    </div>
+
+</section>
+
+<!-- ========================= -->
+<!-- FINAL RESULT PAGE -->
+<!-- ========================= -->
+
+<section
+    id="finalPage"
+    class="hidden"
+>
+
+    <div class="container">
+
+        <h1 class="title">
+            FINAL RESULT
+        </h1>
+
+        <div
+            id="finalResultContainer"
+            class="final-result-container"
+        ></div>
+
+        <div class="button-group">
+
+            <button id="teamBuildBtn">
+                팀 구성하기
+            </button>
+
+            <button id="restartBtn">
+                다시 추첨하기
             </button>
 
         </div>
 
-    </section>
+    </div>
 
-    <!-- ========================= -->
-    <!-- 챔피언 공개 화면 -->
-    <!-- ========================= -->
+</section>
 
-    <section
-        id="revealPage"
-        class="hidden"
-    >
+<!-- ========================= -->
+<!-- TEAM BUILD PAGE -->
+<!-- ========================= -->
 
-        <div class="container">
+<section
+    id="teamBuildPage"
+    class="hidden"
+>
 
-            <h1 class="title">
-                CHAMPION REVEAL
-            </h1>
+    <div class="container">
 
-            <div class="current-reveal-info">
+        <h1 class="title">
+            TEAM BUILD
+        </h1>
 
-                현재 공개 중 :
+        <p class="team-guide">
+            플레이어를 선택 후 팀 이동 버튼을 눌러주세요
+        </p>
 
-                <span id="currentPlayerName">
-                    -
-                </span>
+        <!-- 이동 버튼 -->
 
-            </div>
+        <div class="team-action-bar">
 
-            <div
-                id="countdown"
-                class="countdown"
-            ></div>
+            <button id="moveToTeam1Btn">
+                ▶ 1팀 보내기
+            </button>
 
-            <div
-                id="allPlayersReveal"
-                class="all-players-reveal"
-            ></div>
+            <button id="moveToTeam2Btn">
+                ▶ 2팀 보내기
+            </button>
 
         </div>
 
-    </section>
+        <div class="team-build-layout">
 
-    <!-- ========================= -->
-    <!-- 최종 결과 화면 -->
-    <!-- ========================= -->
-
-    <section
-        id="finalPage"
-        class="hidden"
-    >
-
-        <div class="container">
-
-            <h1 class="title">
-                FINAL RESULT
-            </h1>
+            <!-- 1팀 -->
 
             <div
-                id="finalResultContainer"
-                class="final-result-container"
-            ></div>
+                class="team-area"
+            >
 
-            <div class="button-group">
+                <h2>
+                    1팀
+                </h2>
 
-                <button id="teamBuildBtn">
-                    팀 구성하기
-                </button>
-
-                <button id="restartBtn">
-                    다시 추첨하기
-                </button>
+                <div
+                    id="team1Players"
+                ></div>
 
             </div>
 
-        </div>
+            <!-- 선수목록 -->
 
-    </section>
+            <div
+                class="available-area"
+            >
 
-    <!-- ========================= -->
-    <!-- TEAM BUILD 화면 -->
-    <!-- ========================= -->
-
-    <section
-        id="teamBuildPage"
-        class="hidden"
-    >
-
-        <div class="container">
-
-            <h1 class="title">
-                TEAM BUILD
-            </h1>
-
-            <p class="team-guide">
-                선수를 선택한 뒤 원하는 팀 영역을 클릭하세요
-            </p>
-
-            <div class="team-build-layout">
-
-                <!-- 1팀 -->
+                <h2>
+                    선수 목록
+                </h2>
 
                 <div
-                    id="team1Area"
-                    class="team-area"
-                >
+                    id="availablePlayers"
+                ></div>
 
-                    <h2>
-                        1팀
-                    </h2>
+            </div>
 
-                </div>
+            <!-- 2팀 -->
 
-                <!-- 선수 목록 -->
+            <div
+                class="team-area"
+            >
 
-                <div
-                    class="available-area"
-                >
-
-                    <h2>
-                        선수 목록
-                    </h2>
-
-                    <div
-                        id="availablePlayers"
-                    ></div>
-
-                </div>
-
-                <!-- 2팀 -->
+                <h2>
+                    2팀
+                </h2>
 
                 <div
-                    id="team2Area"
-                    class="team-area"
-                >
-
-                    <h2>
-                        2팀
-                    </h2>
-
-                </div>
+                    id="team2Players"
+                ></div>
 
             </div>
 
         </div>
 
-    </section>
+        <div class="button-group">
 
-    <script src="app.js"></script>
+            <button id="backToResultBtn">
+                결과 화면으로
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<script src="app.js"></script>
 
 </body>
 </html>
